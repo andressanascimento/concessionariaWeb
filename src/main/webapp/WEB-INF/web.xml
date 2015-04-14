@@ -26,7 +26,7 @@
 
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
