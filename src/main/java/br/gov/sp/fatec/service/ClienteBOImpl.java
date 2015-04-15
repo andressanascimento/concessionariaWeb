@@ -12,45 +12,60 @@ import br.gov.sp.fatec.vo.ClienteVO;
 @Transactional
 public class ClienteBOImpl implements ClienteBO, Serializable {
 
-	private static final long serialVersionUID = 5471811505341189578L;
-	
-	private ClienteDao clienteDao;
-	
-	public void setPessoaDao(ClienteDao clienteDao) {
-		this.clienteDao = clienteDao;
-	}
+    private static final long serialVersionUID = 5471811505341189578L;
 
-	@Override
-	public void salvarCliente(ClienteVO clienteVO) {
-		Cliente cliente = clienteDao.paraEntidade(clienteVO);
-		clienteDao.salvar(cliente);
-	}
-	
-	@Override
-	public void removerCliente(Long id) {
-		Cliente cliente = clienteDao.pesquisarPorId(id);
-		if(cliente == null) {
-			throw new RuntimeException("Nao existe pessoa com ID: " + id);
-		}
-		clienteDao.excluir(cliente);
-	}
+    private ClienteDao clienteDao;
 
-	@Override
-	public Collection<ClienteVO> listarClientes() {
-		return clienteDao.paraColecaoClienteVO(clienteDao.todos());
-	}
+    public void setPessoaDao(ClienteDao clienteDao) {
+        this.clienteDao = clienteDao;
+    }
 
-	@Override
-	public Collection<ClienteVO> pesquisarClientes(ClienteVO clienteVO) {
-		return clienteDao.pesquisa(clienteVO);
-	}
+    @Override
+    public void salvarCliente(ClienteVO clienteVO) {
+        Cliente cliente = clienteDao.paraEntidade(clienteVO);
+        Long id = cliente.getId();
+        if (id != null) {
+            clienteDao.atualizar(cliente);
+        } else {
+            clienteDao.salvar(cliente);
+        }
 
-	@Override
-	public ClienteVO recuperarCliente(Long id) {
-		Cliente cliente = clienteDao.pesquisarPorId(id);
-		if(cliente == null) {
-			throw new RuntimeException("Não existe cliente com ID: " + id);
-		}
-		return clienteDao.paraClienteVO(cliente);
-	}
+    }
+
+    @Override
+    public void removerCliente(Long id) {
+        Cliente cliente = clienteDao.pesquisarPorId(id);
+        if (cliente == null) {
+            throw new RuntimeException("Nao existe pessoa com ID: " + id);
+        }
+        clienteDao.excluir(cliente);
+    }
+
+    @Override
+    public Collection<ClienteVO> listarClientes() {
+        return clienteDao.paraColecaoClienteVO(clienteDao.todos());
+    }
+
+    @Override
+    public Collection<ClienteVO> pesquisarClientes(ClienteVO clienteVO) {
+        return clienteDao.pesquisa(clienteVO);
+    }
+
+    @Override
+    public ClienteVO recuperarCliente(Long id) {
+        Cliente cliente = clienteDao.pesquisarPorId(id);
+        if (cliente == null) {
+            throw new RuntimeException("Não existe cliente com ID: " + id);
+        }
+        return clienteDao.paraClienteVO(cliente);
+    }
+
+    public ClienteDao getClienteDao() {
+        return clienteDao;
+    }
+
+    public void setClienteDao(ClienteDao clienteDao) {
+        this.clienteDao = clienteDao;
+    }
+
 }

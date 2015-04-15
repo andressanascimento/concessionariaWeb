@@ -29,7 +29,7 @@ public class AluguelDaoImpl extends DaoGenericoImpl<Aluguel, Long> implements Al
 		AluguelVO aluguelVO = new AluguelVO();
 		aluguelVO.setId(entidade.getId());
 		aluguelVO.setCliente(clienteDao.paraClienteVO(entidade.getCliente()));
-		aluguelVO.setCarros(carroDao.paraColecaoCarroVO(entidade.getCarros()));
+//		aluguelVO.setCarros(carroDao.paraColecaoCarroVO(entidade.getCarros()));
 		return aluguelVO;
 	}
 
@@ -57,7 +57,7 @@ public class AluguelDaoImpl extends DaoGenericoImpl<Aluguel, Long> implements Al
 		aluguel.setCliente(clienteDao.paraEntidade(aluguelVO.getCliente()));
 		if(aluguelVO.getCarros() != null) {
 			for(CarroVO carroVO: aluguelVO.getCarros()) {
-				aluguel.getCarros().add(carroDao.paraEntidade(carroVO));
+//				aluguel.getCarros().add(carroDao.paraEntidade(carroVO));
 			}
 		}
 		return aluguel;

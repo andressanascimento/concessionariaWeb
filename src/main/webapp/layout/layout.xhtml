@@ -1,47 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
 
-<h:head>
-	<h:outputStylesheet name="css/bootstrap.css" library="bootstrap" />
-</h:head>
+    <h:head>
+        <h:outputStylesheet name="css/bootstrap.css" library="bootstrap" />
+    </h:head>
 
-<h:body>
-oi
-        <div id="site">
+    <h:body style="padding-top: 10px; padding-bottom: 50px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="#"><h:outputText value="Concessionaria"/></a>
+                            </div>
 
-            <div id="header">
-                <ui:insert name="header" >
-                    <ui:include src="/layout/header.xhtml" />
-                </ui:insert>
-            </div>
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="/aluguel/aluguel"><h:outputText value="Aluguel"/> <span class="sr-only"></span></a></li>
+                                    <li><a href="/cliente/cliente"><h:outputText value="Cliente"/> </a></li>
 
-            <div id="conteudo">
-                <div id="menu">
-                    <ui:insert name="menu" >
-                        <ui:include src="/layout/menu.xhtml" />
-                    </ui:insert>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </nav>
                 </div>
-                <div id="principal">
-                    <h:messages id="messages" globalOnly="true"/>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
                     <ui:insert name="principal" >
-                        <h:outputText value="Bem vindo!"/>
                     </ui:insert>
                 </div>
-
             </div>
-
-            <div id="footer">
-                <ui:insert name="footer" >
-                    <ui:include src="/layout/footer.xhtml" />
-                </ui:insert>
-            </div>
+            <h:outputScript name="js/bootstrap.js" library="bootstrap"/>
 
         </div>
+    </h:body>
 
-	<h:outputScript name="js/bootstrap.js" library="bootstrap"/>
-</h:body>
 </html>

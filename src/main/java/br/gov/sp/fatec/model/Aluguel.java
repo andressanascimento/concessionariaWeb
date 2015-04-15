@@ -16,46 +16,47 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-
 @Entity
 @Table(name = "aluguel")
 public class Aluguel {
-    
-    @Id 
+
+    @Id
     @GeneratedValue
     @Column(name = "id")
-	private Long id;
-    
+    private Long id;
+
     @ManyToOne()
     @Cascade({CascadeType.PERSIST})
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
-        
-    @OneToMany(mappedBy="aluguel", fetch=FetchType.LAZY)
-    private Collection<Carro> carros = new ArrayList<Carro>();
-    
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @ManyToOne()
+    @Cascade({CascadeType.PERSIST})
+    @JoinColumn(name = "id_carro")
+    private Carro carro;
 
-	public Cliente getCliente() {
-		return cliente;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public Collection<Carro> getCarros() {
-		return carros;
-	}
+    public Cliente getCliente() {
+        return cliente;
+    }
 
-	public void setCarros(Collection<Carro> carros) {
-		this.carros = carros;
-	} 
-    
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Carro getCarro() {
+        return carro;
+    }
+
+    public void setCarro(Carro carro) {
+        this.carro = carro;
+    }
+
 }

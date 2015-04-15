@@ -1,6 +1,3 @@
-/**
- * 
- */
 package br.gov.sp.fatec.web.controller;
 
 import java.util.ArrayList;
@@ -9,24 +6,25 @@ import java.util.Collection;
 import br.gov.sp.fatec.service.ClienteBO;
 import br.gov.sp.fatec.vo.ClienteVO;
 import br.gov.sp.fatec.web.WebUtils;
+import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @ManagedBean(name="clienteController")
 @SessionScoped
-public class ClienteController {
+public class ClienteController implements Serializable {
 	
 	private ClienteVO pesquisa;
 	private ClienteVO edicao;
 	private Collection<ClienteVO> resultado;
-	private ClienteBO clienteBO;
+        @Autowired
         @ManagedProperty(value="#{clienteBO}")
+	private ClienteBO clienteBO;
         
-	/**
-	 * @param clienteBO the clienteBO to set
-	 */
+        
 	public void setClienteBO(ClienteBO clienteBO) {
 		this.clienteBO = clienteBO;
 	}

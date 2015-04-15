@@ -10,34 +10,53 @@
 
         <f:event type="preRenderView" listener="#{clienteController.inicializar}"/>
 
-        <h:form id="pessoaForm">        
+        <h:form id="clienteForm">        
 
             <h:panelGroup id="edicao">
 
                 <h:panelGrid id="barraBotoesEdicao" columns="2">
-                    <h:commandButton id="salvar" value="Salvar" action="#{clienteController.salvar}">
+                    <h:commandButton id="salvar" value="Salvar" action="#{clienteController.salvar}" class="btn btn-success">
                         <f:ajax execute="@form" render="@form :messages" />
                     </h:commandButton>
-                    <h:commandButton id="cancelar" value="Cancelar" action="#{clienteController.cancelar}">
+                    <h:commandButton id="cancelar" value="Cancelar" action="#{clienteController.cancelar}" class="btn btn-danger">
                         <f:ajax execute="@this" render="@form" />
                     </h:commandButton>
                 </h:panelGrid>
 
-                <h:panelGrid id="camposEdicao" columns="3">
-                    <f:facet name="header">
+                <div id="camposEdicao" columns="3">
+                    <!--<f:facet name="header">-->
+                    <h3 class="page-header">
                         <h:outputText value="Cliente"/>
-                    </f:facet>
-                    <h:outputText id="nomeLabel" value="Nome :"/> 
-                    <h:inputText id="nome" value="#{clienteController.edicao.nome}" 
-                                 size="20" required="true"
-                                 label="Nome" >
-                    </h:inputText>
-                    <h:inputText id="nome" value="#{clienteController.edicao.email}" 
-                                 size="20" required="false"
-                                 label="Email" >
-                    </h:inputText>
-                    <h:message id="nomeMensagem" for="nome" style="color:red" />
-                </h:panelGrid>
+                    </h3>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-lg-2 control-label">
+                            <h:outputText id="nomeLabel" value="Nome"/>
+                        </label>
+                        <div class="col-lg-3">
+                            <h:inputText id="nome" value="#{clienteController.edicao.nome}" 
+                                         size="20" required="true"
+                                         label="Nome" class="form-control">
+
+                            </h:inputText>
+                            <h:message id="nomeMensagem" for="email" class="help-block"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-lg-2 control-label">
+                            <h:outputText id="emailLabel" value="Email"/>
+                        </label>
+                        <div class="col-lg-3">
+                            <h:inputText id="email" value="#{clienteController.edicao.email}" 
+                                         size="20" required="false"
+                                         label="Email" class="form-control">
+                            </h:inputText>
+
+                            <h:message id="emailMensagem" for="email" class="help-block"/>
+                        </div>
+                    </div>
+                </div>
 
             </h:panelGroup>
         </h:form>

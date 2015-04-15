@@ -14,11 +14,12 @@ import br.gov.sp.fatec.service.AluguelBO;
 import br.gov.sp.fatec.vo.AluguelVO;
 import br.gov.sp.fatec.vo.CarroVO;
 import br.gov.sp.fatec.web.WebUtils;
+import java.io.Serializable;
 
 
 @ManagedBean(name="aluguelController")
 @SessionScoped
-public class AluguelController {
+public class AluguelController implements Serializable {
 	
 	private Boolean editar = false;
 	private AluguelVO pesquisa;
@@ -28,11 +29,9 @@ public class AluguelController {
 	@ManagedProperty(value="#{aluguelBO}")
 	private AluguelBO aluguelBO;
 
-	/**
-	 * @param estoqueBO the estoqueBO to set
-	 */
-	public void setAluguelBO(AluguelBO estoqueBO) {
-		this.aluguelBO = estoqueBO;
+
+	public void setAluguelBO(AluguelBO aluguelBO) {
+		this.aluguelBO = aluguelBO;
 	}
 	
 	public void inicializar() {

@@ -38,19 +38,7 @@ public class AluguelBOImpl implements AluguelBO, Serializable{
 
 	@Override
 	public void criarAluguel(AluguelVO aluguelVO) {
-		Collection<CarroVO> carros = aluguelVO.getCarros();
-		// Se existem itens ao criar, gera erro
-		aluguelVO.setCarros(null);
 		Aluguel aluguel = aluguelDao.salvar(aluguelDao.paraEntidade(aluguelVO));
-		// Cria itens
-		if(!carros.isEmpty()) {
-			for(CarroVO carroVO: carros) {
-				Carro carro = carroDao.paraEntidade(carroVO);
-				// Basta setar do lado com inverse
-				carro.setAluguel(aluguel);
-				carroDao.salvar(carro);
-			}
-		}
 	}
 	
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
-
+    
     <!-- Datasource -->
     <bean id="dataSource" 
-         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://localhost:3306/concessionaria" />
         <property name="username" value="root" />
@@ -16,7 +16,7 @@
     
     <!-- Hibernate session factory -->
     <bean id="sessionFactory" 
-        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="hibernateProperties">
             <props>
@@ -33,32 +33,36 @@
     
     <tx:annotation-driven />
     <bean id="transactionManager"
-        class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     
-      <bean id="carroDao"
-        class="br.gov.sp.fatec.dao.CarroDaoImpl">
+    <bean id="carroDao"
+            class="br.gov.sp.fatec.dao.CarroDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
     <bean id="aluguelDao"
-        class="br.gov.sp.fatec.dao.AluguelDaoImpl">
+          class="br.gov.sp.fatec.dao.AluguelDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
         <property name="carroDao" ref="carroDao"/>
         <property name="clienteDao" ref="clienteDao"/>
     </bean>
     
     <bean id="clienteDao"
-        class="br.gov.sp.fatec.dao.ClienteDaoImpl">
+          class="br.gov.sp.fatec.dao.ClienteDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
     <bean id="aluguelBO"
-        class="br.gov.sp.fatec.service.AluguelBOImpl">
+          class="br.gov.sp.fatec.service.AluguelBOImpl">
         <property name="aluguelDao" ref="aluguelDao"/>
         <property name="carroDao" ref="carroDao"/>
         <property name="clienteDao" ref="clienteDao"/>
+    </bean>
+    
+    <bean id="clienteBO" class="br.gov.sp.fatec.service.ClienteBOImpl">
+        <property name="pessoaDao" ref="clienteDao"/>
     </bean>
 
 </beans>
