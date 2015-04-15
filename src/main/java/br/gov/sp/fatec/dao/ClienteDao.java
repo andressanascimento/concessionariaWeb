@@ -26,5 +26,7 @@ public interface ClienteDao extends DaoGenerico<Cliente, Long> {
 	 * @return Entidade
 	 */
 	public Cliente paraEntidade(ClienteVO clienteVO);
+        
+        public Collection<ClienteVO> pesquisa(ClienteVO clienteVO);
 	
 }

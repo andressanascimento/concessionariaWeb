@@ -7,6 +7,10 @@ import br.gov.sp.fatec.model.Cliente;
 import br.gov.sp.fatec.vo.ClienteVO;
 import br.gov.sp.fatec.dao.ClienteDao;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
+
 public class ClienteDaoImpl extends DaoGenericoImpl<Cliente, Long> implements ClienteDao {
 	
 	@Override
@@ -35,4 +39,14 @@ public class ClienteDaoImpl extends DaoGenericoImpl<Cliente, Long> implements Cl
 		return cliente;
 	}
 
+        @SuppressWarnings("unchecked")
+	@Override
+	public Collection<ClienteVO> pesquisa(ClienteVO clienteVO) {
+		Criteria criteria = this.getCurrentSession().createCriteria(Cliente.class);
+		if(clienteVO.getNome() != null && !clienteVO.getNome().isEmpty()) {
+			criteria.add(Restrictions.ilike("nome", clienteVO.getNome(), MatchMode.ANYWHERE));
+		}
+		return paraColecaoClienteVO(criteria.list());
+	}
+        
 }
