@@ -39,14 +39,14 @@
                         <h:outputText value="Resultado"/>
                     </f:facet>
                     <h:column>
-                        <h:commandLink id="editar" value="Editar" action="#{clienteController.editar(linha.id)}">
+                        <h:commandButton id="editar" value="Editar" action="#{clienteController.editar(linha.id)}">
                             <f:ajax execute="@this" render="@form :messages" />
-                        </h:commandLink>
+                        </h:commandButton>
                         <br/>
-                        <h:commandLink id="excluir" value="Excluir" action="#{clienteController.remover(linha.id)}" 
+                        <h:commandButton id="excluir" value="Excluir" action="#{clienteController.remover(linha.id)}" 
                             onclick="return confirm('Confirma a exclus�o do registro?');">
                             <f:ajax execute="@this" render="@form :messages" />
-                        </h:commandLink>
+                        </h:commandButton>
                     </h:column>
                     <h:column>
                         <f:facet name="header">

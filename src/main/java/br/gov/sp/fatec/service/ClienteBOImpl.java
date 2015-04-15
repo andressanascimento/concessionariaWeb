@@ -24,7 +24,13 @@ public class ClienteBOImpl implements ClienteBO, Serializable {
 	@Override
 	public void salvarCliente(ClienteVO clienteVO) {
 		Cliente cliente = clienteDao.paraEntidade(clienteVO);
-		clienteDao.salvar(cliente);
+                Long id = cliente.getId();
+                if(id != null){
+                    clienteDao.atualizar(cliente);
+                }else{
+                    clienteDao.salvar(cliente);
+                }
+		
 	}
 	
 	@Override
