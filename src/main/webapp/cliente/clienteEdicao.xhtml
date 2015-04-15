@@ -10,7 +10,7 @@
 
         <f:event type="preRenderView" listener="#{clienteController.inicializar}"/>
 
-        <h:form id="pessoaForm">        
+        <h:form id="clienteForm">        
 
             <h:panelGroup id="edicao">
 
@@ -32,11 +32,19 @@
                                  size="20" required="true"
                                  label="Nome" >
                     </h:inputText>
-                    <h:inputText id="nome" value="#{clienteController.edicao.email}" 
+                    <h:message id="nomeMensagem" for="nome" style="color:red" />
+                    <h:outputText id="emailLabel" value="Email :"/> 
+                    <h:inputText id="email" value="#{clienteController.edicao.email}" 
                                  size="20" required="false"
                                  label="Email" >
                     </h:inputText>
-                    <h:message id="nomeMensagem" for="nome" style="color:red" />
+                    <h:message id="emailMensagem" for="email" style="color:red" />
+                    <h:outputText id="telefoneLabel" value="Telefone :"/> 
+                    <h:inputText id="telefone" value="#{clienteController.edicao.telefone}" 
+                                 size="20" required="false"
+                                 label="Telefone" >
+                    </h:inputText>
+                    <h:message id="telefoneMensagem" for="telefone" style="color:red" />
                 </h:panelGrid>
 
             </h:panelGroup>

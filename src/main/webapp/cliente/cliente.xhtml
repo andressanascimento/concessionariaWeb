@@ -10,7 +10,7 @@
     
         <f:event type="preRenderView" listener="#{clienteController.inicializar}"/>
 
-        <h:form id="pessoaForm">        
+        <h:form id="clienteForm">        
             <h:panelGroup id="pesquisa">
                 <h:panelGrid id="barraBotoesPesquisa" columns="1">
                     <h:commandButton id="novo" value="Novo" action="#{clienteController.novo}">
@@ -44,7 +44,7 @@
                         </h:commandLink>
                         <br/>
                         <h:commandLink id="excluir" value="Excluir" action="#{clienteController.remover(linha.id)}" 
-                            onclick="return confirm('Confirma a exclusão do registro?');">
+                            onclick="return confirm('Confirma a exclusï¿½o do registro?');">
                             <f:ajax execute="@this" render="@form :messages" />
                         </h:commandLink>
                     </h:column>
