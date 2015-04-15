@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.gov.sp.fatec.dao.ClienteDao;
 import br.gov.sp.fatec.model.Cliente;
 import br.gov.sp.fatec.vo.ClienteVO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Transactional
 public class ClienteBOImpl implements ClienteBO, Serializable {
@@ -49,8 +50,10 @@ public class ClienteBOImpl implements ClienteBO, Serializable {
 	public ClienteVO recuperarCliente(Long id) {
 		Cliente cliente = clienteDao.pesquisarPorId(id);
 		if(cliente == null) {
-			throw new RuntimeException("Não existe cliente com ID: " + id);
+			throw new RuntimeException("Nï¿½o existe cliente com ID: " + id);
 		}
 		return clienteDao.paraClienteVO(cliente);
 	}
+        
+
 }
