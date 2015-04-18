@@ -55,7 +55,7 @@ public class ClienteBOImpl implements ClienteBO, Serializable {
     public ClienteVO recuperarCliente(Long id) {
         Cliente cliente = clienteDao.pesquisarPorId(id);
         if (cliente == null) {
-            throw new RuntimeException("Não existe cliente com ID: " + id);
+            throw new RuntimeException("NÃ£o existe cliente com ID: " + id);
         }
         return clienteDao.paraClienteVO(cliente);
     }
