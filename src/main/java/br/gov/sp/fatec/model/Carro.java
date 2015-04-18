@@ -12,65 +12,50 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "carro")
 public class Carro {
-    
-    @Id 
+
+    @Id
     @GeneratedValue
     @Column(name = "id")
-	private Long id;
-    
-    @Column(name = "placa", unique=true)
+    private Long id;
+
+    @Column(name = "placa", unique = true)
     private String placa;
-        
+
     @Column(name = "modelo")
     private String modelo;
-    
+
     @Column(name = "marca")
     private String marca;
-    
-    @ManyToOne()
-    @JoinColumn(name="id_aluguel")
-    private Aluguel aluguel;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getPlaca() {
-		return placa;
-	}
+    public String getPlaca() {
+        return placa;
+    }
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
 
-	public String getModelo() {
-		return modelo;
-	}
+    public String getModelo() {
+        return modelo;
+    }
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
 
-	public String getMarca() {
-		return marca;
-	}
+    public String getMarca() {
+        return marca;
+    }
 
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public Aluguel getAluguel() {
-		return aluguel;
-	}
-
-	public void setAluguel(Aluguel aluguel) {
-		this.aluguel = aluguel;
-	}
-	
-	
-    
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
 }

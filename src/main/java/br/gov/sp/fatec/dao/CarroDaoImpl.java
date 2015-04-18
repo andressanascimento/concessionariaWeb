@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import br.gov.sp.fatec.model.Carro;
 import br.gov.sp.fatec.vo.CarroVO;
+import java.util.List;
 
 public class CarroDaoImpl extends DaoGenericoImpl<Carro, Long> implements CarroDao {
 	
@@ -33,5 +34,4 @@ public class CarroDaoImpl extends DaoGenericoImpl<Carro, Long> implements CarroD
 		carro.setMarca(carroVO.getMarca());
 		return carro;
 	}
-
 }

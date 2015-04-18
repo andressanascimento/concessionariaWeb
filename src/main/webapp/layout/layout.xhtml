@@ -27,9 +27,10 @@
 
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
-                                    <li class="active"><a href="/aluguel/aluguel"><h:outputText value="Aluguel"/> <span class="sr-only"></span></a></li>
-                                    <li><a href="/cliente/cliente"><h:outputText value="Cliente"/> </a></li>
-
+                                    <h:form>
+                                    <li class="active"><h:commandLink id="aluguel" value="Aluguel" action="/aluguel/aluguel?faces-redirect=true" immediate="true"/><span class="sr-only"></span></li>
+                                    <li><h:commandLink id="cliente" value="Cliente" action="/cliente/cliente?faces-redirect=true" immediate="true"/></li>
+                                    </h:form>
                                 </ul>
 
                             </div>
