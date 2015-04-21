@@ -5,7 +5,9 @@ import java.util.Collection;
 
 import br.gov.sp.fatec.model.Carro;
 import br.gov.sp.fatec.vo.CarroVO;
-import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 
 public class CarroDaoImpl extends DaoGenericoImpl<Carro, Long> implements CarroDao {
 	
@@ -33,5 +35,15 @@ public class CarroDaoImpl extends DaoGenericoImpl<Carro, Long> implements CarroD
 		carro.setModelo(carroVO.getModelo());
 		carro.setMarca(carroVO.getMarca());
 		return carro;
+	}
+        
+        @SuppressWarnings("unchecked")
+	@Override
+	public Collection<CarroVO> pesquisa(CarroVO carroVO) {
+		Criteria criteria = this.getCurrentSession().createCriteria(Carro.class);
+		if(carroVO.getPlaca() != null && !carroVO.getPlaca().isEmpty()) {
+			criteria.add(Restrictions.ilike("placa", carroVO.getPlaca(), MatchMode.ANYWHERE));
+		}
+		return paraColecaoCarroVO(criteria.list());
 	}
 }

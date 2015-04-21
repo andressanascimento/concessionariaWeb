@@ -38,7 +38,7 @@
     </bean>
     
     <bean id="carroDao"
-            class="br.gov.sp.fatec.dao.CarroDaoImpl">
+          class="br.gov.sp.fatec.dao.CarroDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     
@@ -63,6 +63,10 @@
     
     <bean id="clienteBO" class="br.gov.sp.fatec.service.ClienteBOImpl">
         <property name="pessoaDao" ref="clienteDao"/>
+    </bean>
+    
+    <bean id="carroBO" class="br.gov.sp.fatec.service.CarroBOImpl">
+        <property name="carroDao" ref="carroDao"/>
     </bean>
 
 </beans>

@@ -20,6 +20,8 @@ import br.gov.sp.fatec.vo.AluguelVO;
 import br.gov.sp.fatec.vo.CarroVO;
 import br.gov.sp.fatec.web.WebUtils;
 import java.io.Serializable;
+import br.gov.sp.fatec.dao.CarroDaoImpl;
+import br.gov.sp.fatec.dao.ClienteDaoImpl;
 
 @ManagedBean(name = "aluguelController")
 @SessionScoped
@@ -36,6 +38,7 @@ public class AluguelController implements Serializable {
     private Collection<Cliente> clientes;
     private CarroDao carroDao;
     private ClienteDao clienteDao;
+    
     
 
     public void setAluguelBO(AluguelBO aluguelBO) {

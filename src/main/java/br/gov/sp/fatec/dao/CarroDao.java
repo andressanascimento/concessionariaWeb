@@ -4,6 +4,9 @@ import java.util.Collection;
 
 import br.gov.sp.fatec.model.Carro;
 import br.gov.sp.fatec.vo.CarroVO;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 
 public interface CarroDao extends DaoGenerico<Carro, Long> {
 	/**
@@ -26,4 +29,8 @@ public interface CarroDao extends DaoGenerico<Carro, Long> {
 	 * @return Entidade
 	 */
 	public Carro paraEntidade(CarroVO carroVO);
+        
+        public Collection<CarroVO> pesquisa(CarroVO carroVO);
+        
+        
 }

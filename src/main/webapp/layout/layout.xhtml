@@ -22,15 +22,14 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a class="navbar-brand" href="#"><h:outputText value="Concessionaria"/></a>
+                                <a class="navbar-brand" href="/ConcessionariaSpring/"><h:outputText value="Concessionaria"/></a>
                             </div>
 
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav">
-                                    <h:form>
-                                    <li class="active"><h:commandLink id="aluguel" value="Aluguel" action="/aluguel/aluguel?faces-redirect=true" immediate="true"/><span class="sr-only"></span></li>
-                                    <li><h:commandLink id="cliente" value="Cliente" action="/cliente/cliente?faces-redirect=true" immediate="true"/></li>
-                                    </h:form>
+                                    <li class="active"><a class="btn btn-link" href="/ConcessionariaSpring/aluguel/aluguel.xhtml"><h:outputText value="Aluguel"/></a></li>
+                                    <li><a class="btn btn-link" href="/ConcessionariaSpring/cliente/cliente.xhtml"><h:outputText value="Cliente"/></a></li>
+                                    <li><a class="btn btn-link" href="/ConcessionariaSpring/carro/carro.xhtml"><h:outputText value="Carro"/></a></li>
                                 </ul>
 
                             </div>
