@@ -3,11 +3,6 @@
  */
 package br.gov.sp.fatec.web.controller;
 
-import br.gov.sp.fatec.dao.CarroDao;
-import br.gov.sp.fatec.dao.CarroDaoImpl;
-import br.gov.sp.fatec.dao.ClienteDao;
-import br.gov.sp.fatec.model.Carro;
-import br.gov.sp.fatec.model.Cliente;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -20,8 +15,9 @@ import br.gov.sp.fatec.vo.AluguelVO;
 import br.gov.sp.fatec.vo.CarroVO;
 import br.gov.sp.fatec.web.WebUtils;
 import java.io.Serializable;
-import br.gov.sp.fatec.dao.CarroDaoImpl;
-import br.gov.sp.fatec.dao.ClienteDaoImpl;
+import br.gov.sp.fatec.service.CarroBO;
+import br.gov.sp.fatec.service.ClienteBO;
+import br.gov.sp.fatec.vo.ClienteVO;
 
 @ManagedBean(name = "aluguelController")
 @SessionScoped
@@ -34,12 +30,15 @@ public class AluguelController implements Serializable {
     private Collection<AluguelVO> resultado;
     @ManagedProperty(value = "#{aluguelBO}")
     private AluguelBO aluguelBO;
-    private Collection<Carro> carros;
-    private Collection<Cliente> clientes;
-    private CarroDao carroDao;
-    private ClienteDao clienteDao;
-    
-    
+
+    @ManagedProperty(value = "#{carroBO}")
+    private CarroBO carroBO;
+
+    @ManagedProperty(value = "#{clienteBO}")
+    private ClienteBO clienteBO;
+
+    private Collection<CarroVO> carros;
+    private Collection<ClienteVO> clientes;
 
     public void setAluguelBO(AluguelBO aluguelBO) {
         this.aluguelBO = aluguelBO;
@@ -54,15 +53,12 @@ public class AluguelController implements Serializable {
             setEditar(false);
         }
 
-        this.carroDao = new CarroDaoImpl();
-        this.clienteDao = new ClienteDaoImpl();
-        
         if (this.carros == null) {
-            setCarros(carroDao.todos());
+            setCarros(carroBO.listarCarros());
         }
 
         if (this.clientes == null) {
-            setClientes(clienteDao.todos());
+            setClientes(clienteBO.listarClientes());
         }
     }
 
@@ -104,9 +100,9 @@ public class AluguelController implements Serializable {
         if (getCarro() == null || getCarro().isEmpty()) {
             WebUtils.incluirMensagemErro("É necessário informar uma marca para o carro!");
         } else {
-            CarroVO item = new CarroVO();
-            item.setMarca(getCarro());
-            getEdicao().getCarros().add(item);
+            CarroVO carro = new CarroVO();
+            carro.setMarca(getCarro());
+            getEdicao().getCarros().add(carro);
             setCarro(null);
         }
     }
@@ -116,9 +112,9 @@ public class AluguelController implements Serializable {
         if (id.equals(0l)) {
             id = null;
         }
-        for (CarroVO item : getEdicao().getCarros()) {
-            if (((item.getId() == null && id == null) || (item.getId() != null && item.getId().equals(id))) && item.getMarca().equals(nome)) {
-                getEdicao().getCarros().remove(item);
+        for (CarroVO carro : getEdicao().getCarros()) {
+            if (((carro.getId() == null && id == null) || (carro.getId() != null && carro.getId().equals(id))) && carro.getMarca().equals(nome)) {
+                getEdicao().getCarros().remove(carro);
                 break;
             }
         }
@@ -194,20 +190,45 @@ public class AluguelController implements Serializable {
         this.resultado = resultado;
     }
 
-    public Collection<Carro> getCarros() {
-        return this.carros;
+    public String getItem() {
+        return item;
     }
 
-    public Collection<Cliente> getClientes() {
-        return this.clientes;
+    public void setItem(String item) {
+        this.item = item;
     }
 
-    public void setCarros(Collection<Carro> carros) {
+    public CarroBO getCarroBO() {
+        return carroBO;
+    }
+
+    public void setCarroBO(CarroBO carroBO) {
+        this.carroBO = carroBO;
+    }
+
+    public ClienteBO getClienteBO() {
+        return clienteBO;
+    }
+
+    public void setClienteBO(ClienteBO clienteBO) {
+        this.clienteBO = clienteBO;
+    }
+
+    public Collection<CarroVO> getCarros() {
+        return carros;
+    }
+
+    public void setCarros(Collection<CarroVO> carros) {
         this.carros = carros;
     }
 
-    public void setClientes(Collection<Cliente> clientes) {
-        this.clientes = clientes;
+    public Collection<ClienteVO> getClientes() {
+        return clientes;
     }
 
+    public void setClientes(Collection<ClienteVO> clientes) {
+        this.clientes = clientes;
+    }
+    
+    
 }
