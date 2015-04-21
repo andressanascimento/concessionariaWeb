@@ -28,4 +28,6 @@ public interface AluguelDao extends DaoGenerico<Aluguel, Long>{
 	public Aluguel paraEntidade(AluguelVO estoqueVO);
 	
 	public Collection<AluguelVO> pesquisa(AluguelVO aluguelVO);
+        
+        public Collection<AluguelVO> listarRecentes();
 }

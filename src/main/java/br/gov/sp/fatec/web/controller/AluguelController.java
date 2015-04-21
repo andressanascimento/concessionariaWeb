@@ -28,6 +28,7 @@ public class AluguelController implements Serializable {
     private AluguelVO edicao;
     private String item;
     private Collection<AluguelVO> resultado;
+     private Collection<AluguelVO> recentes;
     @ManagedProperty(value = "#{aluguelBO}")
     private AluguelBO aluguelBO;
 
@@ -53,6 +54,8 @@ public class AluguelController implements Serializable {
             setEditar(false);
         }
 
+        setRecentes(aluguelBO.listarRecentes());
+        
         if (this.carros == null) {
             setCarros(carroBO.listarCarros());
         }
@@ -69,6 +72,10 @@ public class AluguelController implements Serializable {
 
     public void pesquisar() {
         setResultado(aluguelBO.pesquisarAluguel(getPesquisa()));
+    }
+    
+    public void listarRecentes() {
+        setRecentes(aluguelBO.listarRecentes());
     }
 
     public void cancelar() {
@@ -229,6 +236,13 @@ public class AluguelController implements Serializable {
     public void setClientes(Collection<ClienteVO> clientes) {
         this.clientes = clientes;
     }
-    
-    
+
+    public Collection<AluguelVO> getRecentes() {
+        return recentes;
+    }
+
+    public void setRecentes(Collection<AluguelVO> recentes) {
+        this.recentes = recentes;
+    }
+        
 }

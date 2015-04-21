@@ -30,11 +30,11 @@
                     <h:message id="codigoPesquisaMensagem" for="codigo" class="page-header" />
                     <h:outputText id="nomePesquisaLabel" value="Cliente"/> 
                     <h:selectOneMenu value="#{aluguelController.pesquisa.cliente}">
-                        <f:selectItems value="#{aluguel.clientes}" var="cliente" itemValue="#{cliente}" itemLabel="#{cliente.nome}" />
+                        <f:selectItems value="#{aluguel.clientes}" var="cliente" itemValue="#{cliente.id}" itemLabel="#{cliente.nome}" />
                     </h:selectOneMenu>
                     
                     <h:selectOneMenu value="#{aluguelController.pesquisa.carros}">
-                        <f:selectItems value="#{aluguel.carros}" var="carro" itemValue="#{carro}" itemLabel="#{carro.placa}" />
+                        <f:selectItems value="#{aluguel.carros}" var="carro" itemValue="#{carro.id}" itemLabel="#{carro.placa}" />
                     </h:selectOneMenu>
 
                     <h:message id="nomePesquisaMensagem" for="nome" style="color:red" />                
@@ -84,10 +84,10 @@
             <h:panelGroup id="edicao" rendered="#{aluguelController.editar}">
 
                 <h:panelGrid id="barraBotoesEdicao" columns="2">
-                    <h:commandButton id="salvar" value="Salvar" action="#{estoqueController.salvar}">
+                    <h:commandButton id="salvar" value="Salvar" action="#{aluguelController.salvar}">
                         <f:ajax execute="@form" render="@form :messages" />
                     </h:commandButton>
-                    <h:commandButton id="cancelar" value="Cancelar" action="#{estoqueController.cancelar}">
+                    <h:commandButton id="cancelar" value="Cancelar" action="#{aluguelController.cancelar}">
                         <f:ajax execute="@this" render="@form" />
                     </h:commandButton>
                 </h:panelGrid>

@@ -52,6 +52,8 @@ public interface AluguelBO {
 	public Collection<AluguelVO> pesquisarAluguel(AluguelVO aluguelVO);
 	
 	public AluguelVO recuperarAluguel(Long id);
+        
+        public Collection<AluguelVO> listarRecentes();
 	
 
 }
